@@ -9,48 +9,20 @@ export const Home = () => {
   const { data, isLoading, error } = useUsers();
   const createUser = useCreateUser();
 
-  const handleEmailChange = (e: FormEvent<HTMLInputElement>) => {
-    setEmail(e.currentTarget.value);
-  };
-
-  const handleProfileUrlChange = (e: FormEvent<HTMLInputElement>) => {
-    setProfileUrl(e.currentTarget.value);
-  };
-
   const handleSubmit = (e: FormEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    clearFields();
     createUser.mutate({
       email,
       profileUrl,
     });
   };
 
-  const clearFields = () => {
-    setEmail("");
-    setProfileUrl("");
-  };
-
   return (
     <div>
       <h1>Create User</h1>
       <form style={{ display: "flex" }}>
-        <label htmlFor="title">Email</label>
-        <input
-          type="text"
-          onChange={handleEmailChange}
-          value={email}
-          name="email"
-        />
-        <label htmlFor="description">Profile URL</label>
-        <input
-          type="text"
-          onChange={handleProfileUrlChange}
-          value={profileUrl}
-          name="profileUrl"
-        />
         <button type="submit" onClick={handleSubmit}>
-          Submit
+          Log in with twitter
         </button>
       </form>
       {data && <pre>{JSON.stringify(data, null, 2)}</pre>}

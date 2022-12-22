@@ -8,7 +8,7 @@ export const useCreateUser = () => {
 
   return useMutation(
     ({ email, profileUrl }: Props) =>
-      api.post("/users", {
+      api.post("/users/auth/twitter", {
         email,
         profileUrl,
       }),
