@@ -11,9 +11,10 @@ export const useTwitterOAuth = () => {
 
   return useQuery<TwitterOAuthResponse>(
     ["twitter-auth-url"],
-    async () => api.get("/users/auth/twitter"),
+    async () => api.get("/auth/twitter"),
     {
       enabled: false,
+      retry: false,
       onSuccess: () => queryClient.invalidateQueries(["twitter-auth-url"]),
     }
   );
