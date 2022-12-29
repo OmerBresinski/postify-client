@@ -1,25 +1,24 @@
-import { useState, useMemo, useEffect } from "react";
-import { useUsers } from "@/api/entities";
-import { useTwitterOAuth } from "@/api/entities/users/useTwitterOAuth";
-import { useLocation } from "react-router-dom";
-import type { FormEvent } from "react";
-import { api } from "@/api/utils/axios";
+import { useMe } from "@/api/entities";
 
 export const Home = () => {
-  const [email, setEmail] = useState("");
-  const [profileUrl, setProfileUrl] = useState("");
-  const { data, isLoading, error } = useUsers();
-  const { data: newUser, refetch: loginWithTwitter } = useTwitterOAuth();
+  const { data: loggedInUser } = useMe();
 
   return (
     <div>
-      <h1>Create User</h1>
-      <form style={{ display: "flex" }}>
-        <a href="http://127.0.0.1:4000/api/auth/twitter">Log in with twitter</a>
-      </form>
-      {data && <pre>{JSON.stringify(data, null, 2)}</pre>}
-      {error && <div>Error</div>}
-      {isLoading && <div>Loading...</div>}
+      <h1>Home</h1>
+      {loggedInUser ? (
+        <div>
+          <div>Current user:</div>
+          <pre>{JSON.stringify(loggedInUser, null, 2)}</pre>
+        </div>
+      ) : (
+        <form style={{ display: "flex" }}>
+          <a href="http://127.0.0.1:4000/api/auth/twitter">
+            Log in with twitter
+          </a>
+        </form>
+      )}
+      <a href="http://127.0.0.1:4000/api/auth/logout">Log out</a>
     </div>
   );
 };

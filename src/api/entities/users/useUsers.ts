@@ -14,3 +14,16 @@ export const useUser = (id: number) => {
     return await response.data;
   }).data;
 };
+
+export const useMe = () => {
+  return useQuery(
+    ["me"],
+    async () => {
+      const response = await api.get("/users/me");
+      return await response.data;
+    },
+    {
+      retry: false,
+    }
+  );
+};
