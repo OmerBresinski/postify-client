@@ -1,9 +1,14 @@
+import { useState } from "react";
 import { useMe } from "@/api/entities/users";
 import { useTweets } from "@/api/entities/tweets";
+import { useScheduleTweets } from "@/api/entities/tweets/useTweets";
 
 export const Home = () => {
   const { data: loggedInUser } = useMe();
   const { data: tweets, error, isLoading } = useTweets();
+  const { data, mutate } = useScheduleTweets();
+  const [text, setText] = useState("");
+  const [date, setDate] = useState("");
 
   return (
     <div
@@ -77,6 +82,33 @@ export const Home = () => {
           </div>
         </div>
       ) : null}
+      <div>
+        <h2>Schedule tweet</h2>
+        <form
+          style={{ display: "flex", flexDirection: "column", gap: "5px" }}
+          onSubmit={(e) => {
+            e.preventDefault();
+            date && text && mutate({ scheduledDate: new Date(date), text });
+            setDate("");
+            setText("");
+          }}
+        >
+          <input
+            type="text"
+            placeholder="Text"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+          />
+
+          <input
+            type="datetime-local"
+            placeholder="Date"
+            value={date}
+            onChange={(e) => setDate(e.target.value)}
+          />
+          <button type="submit">Schedule tweet</button>
+        </form>
+      </div>
       <a href="http://127.0.0.1:4000/api/auth/logout">Log out</a>
     </div>
   );

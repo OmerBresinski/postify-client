@@ -7,14 +7,13 @@ interface TweetResponse {
   meta: Metadata;
 }
 interface Tweet {
-  edit_history_tweet_ids: string[];
   id: string;
   text: string;
 }
 
 interface ScheduledTweet {
   text: string;
-  date: Date;
+  scheduledDate: Date;
 }
 
 interface Metadata {
@@ -32,11 +31,13 @@ export const useTweets = () => {
 };
 
 export const useScheduleTweets = () => {
-  return useMutation<ScheduledTweet>({
-    mutationKey: [CACHE_KEYS.TWEETS.scheduledTweets],
-    mutationFn: async (scheduledTweet) => {
+  return useMutation(
+    async (scheduledTweet: ScheduledTweet) => {
       const response = await api.post("/tweets", scheduledTweet);
       return await response.data;
     },
-  });
+    {
+      mutationKey: [CACHE_KEYS.TWEETS.scheduledTweets],
+    }
+  );
 };
