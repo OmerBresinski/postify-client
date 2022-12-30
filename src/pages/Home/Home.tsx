@@ -10,14 +10,19 @@ export const Home = () => {
       style={{
         display: "flex",
         flexDirection: "column",
+        alignItems: "center",
         gap: "20px",
       }}
     >
       <h1>Home</h1>
       {loggedInUser ? (
         <div>
-          <div>Current user:</div>
-          <pre>{JSON.stringify(loggedInUser, null, 2)}</pre>
+          <h2>Current user:</h2>
+          <div style={{ overflowX: "scroll", paddingBlock: "10px" }}>
+            <h4>id: {loggedInUser.id}</h4>
+            <h4>twitterId: {loggedInUser.twitterId}</h4>
+            <h4>twitterAccessToken: {loggedInUser.twitterAccessToken}</h4>
+          </div>
         </div>
       ) : (
         <form style={{ display: "flex" }}>
@@ -47,6 +52,7 @@ export const Home = () => {
               height: "500px",
               overflowY: "scroll",
               border: "1px solid black",
+              boxSizing: "border-box",
               padding: "10px",
             }}
           >
@@ -54,6 +60,7 @@ export const Home = () => {
               <div
                 style={{
                   padding: "5px",
+                  boxSizing: "border-box",
                   border: "2px solid black",
                   borderRadius: "5px",
                   width: "250px",
