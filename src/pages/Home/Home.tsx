@@ -1,7 +1,11 @@
-import { useMe } from "@/api/entities";
+import { useMe } from "@/api/entities/users";
+import { useTweets } from "@/api/entities/tweets";
 
 export const Home = () => {
   const { data: loggedInUser } = useMe();
+  const { data: tweets, error, isLoading } = useTweets();
+
+  console.log({ tweets, error, isLoading });
 
   return (
     <div>
