@@ -8,6 +8,7 @@ interface Me {
   createdAt: Date;
   updatedAt: Date;
   twitterAccessToken: string;
+  twitterUsername: string;
 }
 
 export const useMe = () => {

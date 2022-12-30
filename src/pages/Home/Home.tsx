@@ -12,6 +12,7 @@ export const Home = () => {
         flexDirection: "column",
         alignItems: "center",
         gap: "20px",
+        width: "100vw",
       }}
     >
       <h1>Home</h1>
@@ -20,6 +21,7 @@ export const Home = () => {
           <h2>Current user:</h2>
           <div style={{ overflowX: "scroll", paddingBlock: "10px" }}>
             <h4>id: {loggedInUser.id}</h4>
+            <h4>twitterUsername: {loggedInUser.twitterUsername}</h4>
             <h4>twitterId: {loggedInUser.twitterId}</h4>
             <h4>twitterAccessToken: {loggedInUser.twitterAccessToken}</h4>
           </div>
@@ -39,6 +41,7 @@ export const Home = () => {
             display: "flex",
             flexDirection: "column",
             gap: "5px",
+            width: "100%",
           }}
         >
           <h2>Tweets</h2>
