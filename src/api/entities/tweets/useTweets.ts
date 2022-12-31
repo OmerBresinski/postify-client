@@ -41,3 +41,15 @@ export const useScheduleTweets = () => {
     }
   );
 };
+
+export const useTweetCompletion = () => {
+  return useMutation(
+    async ({ text }: { text: string }) => {
+      const response = await api.post("/tweets/completion", { text });
+      return await response.data;
+    },
+    {
+      mutationKey: [CACHE_KEYS.TWEETS.completion],
+    }
+  );
+};

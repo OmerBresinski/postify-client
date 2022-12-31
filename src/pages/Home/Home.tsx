@@ -1,14 +1,41 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useMe } from "@/api/entities/users";
 import { useTweets } from "@/api/entities/tweets";
-import { useScheduleTweets } from "@/api/entities/tweets/useTweets";
+import {
+  useScheduleTweets,
+  useTweetCompletion,
+} from "@/api/entities/tweets/useTweets";
 
 export const Home = () => {
   const { data: loggedInUser } = useMe();
   const { data: tweets, error, isLoading } = useTweets();
-  const { data, mutate } = useScheduleTweets();
+  const { mutate: scheduleTweet } = useScheduleTweets();
+  const { data: completion, mutate: getCompletion } = useTweetCompletion();
   const [text, setText] = useState("");
   const [date, setDate] = useState("");
+
+  useEffect(() => {
+    if (completion) {
+      setText(completion.completion.replace(/["\n]/g, ""));
+    }
+  }, [completion]);
+
+  //Add a form event type
+  const handleScheduleTweet = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    date && text && scheduleTweet({ scheduledDate: new Date(date), text });
+    setDate("");
+    setText("");
+  };
+
+  const handleGetCompletion = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (text) {
+      getCompletion({ text });
+      setDate("");
+      setText("");
+    }
+  };
 
   return (
     <div
@@ -86,16 +113,11 @@ export const Home = () => {
         <h2>Schedule tweet</h2>
         <form
           style={{ display: "flex", flexDirection: "column", gap: "5px" }}
-          onSubmit={(e) => {
-            e.preventDefault();
-            date && text && mutate({ scheduledDate: new Date(date), text });
-            setDate("");
-            setText("");
-          }}
+          onSubmit={handleGetCompletion}
         >
-          <input
-            type="text"
+          <textarea
             placeholder="Text"
+            rows={3}
             value={text}
             onChange={(e) => setText(e.target.value)}
           />
@@ -106,7 +128,7 @@ export const Home = () => {
             value={date}
             onChange={(e) => setDate(e.target.value)}
           />
-          <button type="submit">Schedule tweet</button>
+          <button type="submit">Get completion</button>
         </form>
       </div>
       <a href="http://127.0.0.1:4000/api/auth/logout">Log out</a>
