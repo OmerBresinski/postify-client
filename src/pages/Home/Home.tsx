@@ -52,6 +52,13 @@ export const Home = () => {
         <div>
           <h2>Current user:</h2>
           <div style={{ overflowX: "scroll", paddingBlock: "10px" }}>
+            {loggedInUser.profileUrl && (
+              <img
+                style={{ border: "1px solid black", borderRadius: "50%" }}
+                src={loggedInUser.profileUrl}
+                alt="profile"
+              />
+            )}
             <h4>id: {loggedInUser.id}</h4>
             <h4>twitterUsername: {loggedInUser.twitterUsername}</h4>
             <h4>twitterId: {loggedInUser.twitterId}</h4>
@@ -84,7 +91,7 @@ export const Home = () => {
               alignItems: "center",
               gap: "5px",
               width: "100%",
-              height: "500px",
+              height: "300px",
               overflowY: "scroll",
               border: "1px solid black",
               boxSizing: "border-box",
