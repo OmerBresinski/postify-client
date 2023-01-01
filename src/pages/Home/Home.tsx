@@ -113,7 +113,7 @@ export const Home = () => {
         <h2>Schedule tweet</h2>
         <form
           style={{ display: "flex", flexDirection: "column", gap: "5px" }}
-          onSubmit={handleGetCompletion}
+          onSubmit={handleScheduleTweet}
         >
           <textarea
             placeholder="Text"
