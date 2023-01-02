@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useMe } from "@/api/entities/users";
 import { useTweets } from "@/api/entities/tweets";
 import {
+  useScheduleManyTweets,
   useScheduleTweets,
   useTweetCompletion,
 } from "@/api/entities/tweets/useTweets";
@@ -13,12 +14,9 @@ export const Home = () => {
   const { data: completion, mutate: getCompletion } = useTweetCompletion();
   const [text, setText] = useState("");
   const [date, setDate] = useState("");
+  const { mutate: scheduleMany } = useScheduleManyTweets();
 
-  useEffect(() => {
-    if (completion) {
-      setText(completion.completion.replace(/["\n]/g, ""));
-    }
-  }, [completion]);
+  console.log(completion);
 
   //Add a form event type
   const handleScheduleTweet = (e: React.FormEvent<HTMLFormElement>) => {
@@ -98,7 +96,7 @@ export const Home = () => {
               padding: "10px",
             }}
           >
-            {tweets.data.map((tweet) => (
+            {tweets.data?.map((tweet) => (
               <div
                 style={{
                   padding: "5px",
@@ -120,7 +118,7 @@ export const Home = () => {
         <h2>Schedule tweet</h2>
         <form
           style={{ display: "flex", flexDirection: "column", gap: "5px" }}
-          onSubmit={handleScheduleTweet}
+          onSubmit={handleGetCompletion}
         >
           <textarea
             placeholder="Text"
