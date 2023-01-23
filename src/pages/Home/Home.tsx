@@ -18,6 +18,10 @@ export const Home = () => {
 
   console.log(completion);
 
+  useEffect(() => {
+    // scheduleMany();
+  }, [completion]);
+
   //Add a form event type
   const handleScheduleTweet = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
