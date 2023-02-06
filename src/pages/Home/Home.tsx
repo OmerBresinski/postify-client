@@ -7,6 +7,7 @@ import {
   useTweetCompletion,
 } from "@/api/entities/tweets/useTweets";
 import { Text } from "@/components/Text";
+import { Button } from "@/components/Button";
 
 export const Home = () => {
   const { data: loggedInUser } = useMe();
@@ -51,9 +52,11 @@ export const Home = () => {
       }}
     >
       <h1>Home</h1>
-      <Text variant="button-text" color="gray400">
-        Hey
-      </Text>
+      <Button
+        text="submit"
+        variant="primary"
+        onClick={() => console.log("submit")}
+      />
       {loggedInUser ? (
         <div>
           <h2>Current user:</h2>

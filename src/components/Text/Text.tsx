@@ -1,7 +1,14 @@
 interface TextProps {
   children: React.ReactNode;
   variant: "content" | "header" | "button-text";
-  color?: "primary" | "gray100" | "gray200" | "gray300" | "gray400" | "gray500";
+  color?:
+    | "primary"
+    | "white"
+    | "gray100"
+    | "gray200"
+    | "gray300"
+    | "gray400"
+    | "gray500";
 }
 
 const getStyle = (variant: TextProps["variant"]) => {
@@ -19,6 +26,7 @@ export const Text = ({ variant, children, color = "primary" }: TextProps) => {
   const { fontSize, fontWeight } = getStyle(variant);
   const textColors = {
     primary: "text-primary",
+    white: "text-white",
     gray100: "text-gray-100",
     gray200: "text-gray-200",
     gray300: "text-gray-300",
