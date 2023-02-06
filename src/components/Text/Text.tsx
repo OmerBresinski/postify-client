@@ -25,7 +25,7 @@ export const Text = ({ variant, children, color = "primary" }: TextProps) => {
     gray400: "text-gray-400",
     gray500: "text-gray-500",
   };
-  console.log(color);
+
   return (
     <span
       style={{
