@@ -3,6 +3,7 @@ import * as Icons from "./Icons";
 interface IconProps {
   name: "back" | "camera" | "image" | "location" | "people" | "time";
   variant?: "default" | "filled";
+  fill?: string;
 }
 
 export const Icon = ({ name, variant = "default" }: IconProps) => {

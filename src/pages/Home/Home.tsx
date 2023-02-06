@@ -6,9 +6,9 @@ import {
   useScheduleTweets,
   useTweetCompletion,
 } from "@/api/entities/tweets/useTweets";
-import { Text } from "@/components/Text";
 import { Button } from "@/components/Button";
 import { Icon } from "@/components/Icon";
+import { Page } from "@/components/Page";
 
 export const Home = () => {
   const { data: loggedInUser } = useMe();
@@ -43,17 +43,7 @@ export const Home = () => {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        gap: "20px",
-        width: "100vw",
-        maxHeight: "100vh",
-        height: "100%",
-      }}
-    >
+    <Page>
       <h1>Home</h1>
       <Icon name="camera" />
       <Button
@@ -152,6 +142,6 @@ export const Home = () => {
         </form>
       </div>
       <a href="http://127.0.0.1:4000/api/auth/logout">Log out</a>
-    </div>
+    </Page>
   );
 };
