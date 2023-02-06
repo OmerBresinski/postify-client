@@ -3,6 +3,18 @@
 @tailwind utilities;
 
 * {
-    font-family: 'Helvetica';
     margin: 0;
+    font-family: 'Mulish', 'Helvetica', 'Arial', sans-serif;
+    box-sizing: border-box;
+    max-width: 100vw;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+}
+
+#root {
+    overflow-y: hidden;
 }

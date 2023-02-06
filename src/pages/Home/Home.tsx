@@ -51,7 +51,9 @@ export const Home = () => {
       }}
     >
       <h1>Home</h1>
-      <Text variant="button-text">Hey</Text>
+      <Text variant="button-text" color="gray400">
+        Hey
+      </Text>
       {loggedInUser ? (
         <div>
           <h2>Current user:</h2>
