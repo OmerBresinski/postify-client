@@ -50,6 +50,8 @@ export const Home = () => {
         alignItems: "center",
         gap: "20px",
         width: "100vw",
+        maxHeight: "100vh",
+        height: "100%",
       }}
     >
       <h1>Home</h1>
