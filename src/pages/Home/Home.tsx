@@ -8,6 +8,7 @@ import {
 } from "@/api/entities/tweets/useTweets";
 import { Text } from "@/components/Text";
 import { Button } from "@/components/Button";
+import { Icon } from "@/components/Icon";
 
 export const Home = () => {
   const { data: loggedInUser } = useMe();
@@ -52,6 +53,7 @@ export const Home = () => {
       }}
     >
       <h1>Home</h1>
+      <Icon name="camera" />
       <Button
         text="submit"
         variant="primary"
