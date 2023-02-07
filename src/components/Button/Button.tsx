@@ -67,7 +67,7 @@ export const Button = ({
   return !disabled ? (
     <button
       onClick={handleClick}
-      className={`box-border flex h-9.5 w-auto items-center justify-center rounded-primary border ${borderColor} ${bgColor} px-4 py-2 capitalize`}
+      className={`box-border flex h-9.5 w-auto items-center justify-center rounded-primary border ${borderColor} ${bgColor} px-6 py-2 capitalize`}
     >
       <Text variant="button-text" color={textColor}>
         {text}

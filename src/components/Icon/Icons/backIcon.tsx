@@ -4,5 +4,7 @@ import { IconProps } from "./types";
 export const BackIcon = ({
   height,
   width,
-  fill,
-}: Omit<IconProps, "variant">) => <BackIconSVG {...{ height, width }} />;
+  color,
+}: Omit<IconProps, "variant">) => (
+  <BackIconSVG {...{ height, width }} fill={color} />
+);
